@@ -21,6 +21,8 @@ using (var channel = connection.CreateModel())
     var properties = channel.CreateBasicProperties();
     properties.Persistent = true;   // Makes messages persistent
 
+    // Messages get distributed among the workers
+    // One message is processed by only one worker
     channel.BasicPublish(exchange: "",
                          routingKey: "task-queue",
                          basicProperties: null,
