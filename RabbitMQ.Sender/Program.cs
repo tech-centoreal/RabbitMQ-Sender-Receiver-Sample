@@ -10,4 +10,6 @@ var message = ((args.Length > 0) ? string.Join(" ", args) : "Hello World!");
 
 // FanoutExchangeSender.Produce(message);
 
-DirectExchangeSender.Produce(message);
+// DirectExchangeSender.Produce(message);
+
+TopicExchangeSender.Produce(message);

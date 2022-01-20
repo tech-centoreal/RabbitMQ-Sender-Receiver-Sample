@@ -6,4 +6,6 @@ Console.WriteLine("Welcome to Receiver !");
 
 // FanoutExchangeReceiver.Consume();
 
-DirectExchangeReceiver.Consume(args);
+// DirectExchangeReceiver.Consume(args);
+
+TopicExchangeReceiver.Consume(args);

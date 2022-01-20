@@ -30,6 +30,12 @@
   - A message goes to the queues whose binding key exactly matches the routing key of the message
 
 - topic
+  - Similar to direct, except
+    - `*` (star) can substitute for exactly one word.
+    - `#` (hash) can substitute for zero or more words.
+  - Messages sent to a topic exchange can't have an arbitrary routing_key 
+  - Routing key must be a list of words, delimited by dots.
+  - Routing key has limit of 255 bytes.
 
 - headers
 
