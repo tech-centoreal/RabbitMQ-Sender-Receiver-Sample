@@ -27,6 +27,7 @@
 > Exchange types define how the message should be processed/distrubuted by producer.
 
 - direct
+  - A message goes to the queues whose binding key exactly matches the routing key of the message
 
 - topic
 
