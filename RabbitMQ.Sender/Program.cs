@@ -9,17 +9,20 @@ var factory = new ConnectionFactory() { HostName = "localhost", Port = 5672 };
 using (var connection = factory.CreateConnection())
 using (var channel = connection.CreateModel())
 {
-    channel.QueueDeclare(queue: "sample-queue",
-                         durable: false,
+    channel.QueueDeclare(queue: "task-queue",
+                         durable: true, // Messages survives RabbitMQ Restarts
                          exclusive: false,
                          autoDelete: false,
                          arguments: null);
 
-    string message = "Hello World!";
+    var message = ((args.Length > 0) ? string.Join(" ", args) : "Hello World!");
     var body = Encoding.UTF8.GetBytes(message);
 
+    var properties = channel.CreateBasicProperties();
+    properties.Persistent = true;   // Makes messages persistent
+
     channel.BasicPublish(exchange: "",
-                         routingKey: "hello",
+                         routingKey: "task-queue",
                          basicProperties: null,
                          body: body);
     Console.WriteLine(" [x] Sent {0}", message);
